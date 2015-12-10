@@ -66,6 +66,9 @@ cp ${BUILDENV}/.n98-magerun.yaml ~/.n98-magerun.yaml
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 
 ${BUILDENV}/install.sh
+if [ -d "${WORKSPACE}/vendor" ] ; then
+  cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
+fi
 
 cd ${BUILDENV}
 ${BUILDENV}/test.sh
