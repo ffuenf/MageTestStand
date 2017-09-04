@@ -11,16 +11,16 @@ provisioner:
     ssl_verify_mode: verify_peer
 
 platforms:
-- name: debian-7.9.0-amd64
+- name: debian-8.7.1-amd64
   driver_config:
-    box: ffuenf/debian-7.9.0-amd64
-    box_url: https://atlas.hashicorp.com/ffuenf/boxes/debian-7.9.0-amd64
+    box: ffuenf/debian-8.7.1-amd64
+    box_url: https://atlas.hashicorp.com/ffuenf/boxes/debian-8.7.1-amd64
     box_check_update: true
 
-- name: ubuntu-14.04.3-server-amd64
+- name: ubuntu-16.04.2-server-amd64
   driver_config:
-    box: ffuenf/ubuntu-14.04.3-server-amd64
-    box_url: https://atlas.hashicorp.com/ffuenf/boxes/ubuntu-14.04.3-server-amd64
+    box: ffuenf/ubuntu-16.04.2-server-amd64
+    box_url: https://atlas.hashicorp.com/ffuenf/boxes/ubuntu-16.04.2-server-amd64
     box_check_update: true
 
 suites:

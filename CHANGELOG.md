@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of MageTestStand.
 
+## 2.2.2
+- add Magento CE 1.9.3.4
+
 ## 2.2.1
 - fix source for magedownload-cli
 
