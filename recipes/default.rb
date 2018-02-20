@@ -4,19 +4,17 @@
 #
 
 include_recipe 'chef-sugar'
-include_recipe 'dotdeb' if debian?
-#include_recipe 'redisio'
-#include_recipe 'redisio::enable'
 include_recipe 'php'
-#include_recipe 'php::predis'
 include_recipe 'php::xdebug'
-#include_recipe 'phpunit'
-#include_recipe 'modman'
-#include_recipe 'magerun'
-#include_recipe 'java'
-#include_recipe 'selenium_grid::node'
 
 ssh_known_hosts_entry 'github.com'
+
+php_fpm "mageteststand" do
+  user 'www-data'
+  group 'www-data'
+  catch_workers_output true
+  action :add
+end
 
 mysql2_chef_gem 'mageteststand' do
   action :install
