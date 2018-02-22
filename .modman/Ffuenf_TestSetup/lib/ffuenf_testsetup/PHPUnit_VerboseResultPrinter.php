@@ -11,7 +11,9 @@
 * @since 2011-11-07
 */
 
-class PHPUnit_VerboseResultPrinter extends PHPUnit_TextUI_ResultPrinter
+use PHPUnit\TextUI\ResultPrinter;
+
+class PHPUnit_VerboseResultPrinter extends ResultPrinter
 {
     /**
     * @var int
