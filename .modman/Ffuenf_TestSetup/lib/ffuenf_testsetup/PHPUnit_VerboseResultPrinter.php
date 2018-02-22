@@ -12,6 +12,8 @@
 */
 
 use PHPUnit\Framework;
+use PHPUnit\Util;
+use PHPUnit\TextUI\ResultPrinter;
 
 class PHPUnit_VerboseResultPrinter extends ResultPrinter
 {
