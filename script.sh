@@ -53,7 +53,7 @@ fi
 
 mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini.disabled ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
 phpenv rehash;
-phpunit --coverage-clover=${WORKSPACE}/build/logs/coverage.clover --colors -d display_errors=1
+$HOME/.cache/bin/phpunit --coverage-clover=${WORKSPACE}/build/logs/coverage.clover --colors -d display_errors=1
 
 echo "Exporting code coverage results to scrutinizer-ci"
 cd ${WORKSPACE}
