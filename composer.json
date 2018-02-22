@@ -4,7 +4,6 @@
   "minimum-stability": "dev",
   "require": {
     "phpseclib/mcrypt_compat": "*",
-    "ffuenf/ecomdev_phpunit": "dev",
     "aoepeople/composer-installers": "*"
   },
   "config": {
@@ -14,10 +13,6 @@
     {
       "type": "composer",
       "url": "https://packages.firegento.com"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/ffuenf/ecomdev_phpunit"
     }
   ]
 }
