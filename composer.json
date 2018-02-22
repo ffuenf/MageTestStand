@@ -4,7 +4,7 @@
   "minimum-stability": "dev",
   "require": {
     "phpseclib/mcrypt_compat": "*",
-    "ffuenf/ecomdev_phpunit": "dev-dev",
+    "ffuenf/ecomdev_phpunit": "dev",
     "aoepeople/composer-installers": "*"
   },
   "config": {
