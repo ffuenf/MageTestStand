@@ -11,11 +11,7 @@
 * @since 2011-11-07
 */
 
-use PHPUnit\Framework;
-use PHPUnit\Util;
-use PHPUnit\TextUI\ResultPrinter;
-
-class PHPUnit_VerboseResultPrinter extends ResultPrinter
+class PHPUnit_VerboseResultPrinter extends PHPUnit_TextUI_ResultPrinter
 {
     /**
     * @var int
@@ -59,12 +55,12 @@ class PHPUnit_VerboseResultPrinter extends ResultPrinter
     /**
     * An error occurred.
     *
-    * @param PHPUnit\Framework\Test $test
+    * @param PHPUnit_Framework_Test $test
     * @param Exception $e
     * @param float $time
     * @return void
     */
-    public function addError(PHPUnit\Framework\Test $test, Exception $e, $time)
+    public function addError(PHPUnit_Framework_Test $test, Exception $e, $time)
     {
         $message = sprintf("%s  ERROR: %s (Duration: %s sec)", str_repeat('  ', $this->level), str_replace("\n", " ", $e->getMessage()), $this->getDuration());
         if ($this->colors) {
@@ -78,12 +74,12 @@ class PHPUnit_VerboseResultPrinter extends ResultPrinter
     /**
     * A failure occurred.
     *
-    * @param PHPUnit\Framework\Test $test
-    * @param PHPUnit\Framework\AssertionFailedError $e
+    * @param PHPUnit_Framework_Test $test
+    * @param PHPUnit_Framework_AssertionFailedError $e
     * @param float $time
     * @return void
     */
-    public function addFailure(PHPUnit\Framework\Test $test, PHPUnit\Framework\AssertionFailedError $e, $time)
+    public function addFailure(PHPUnit_Framework_Test $test, PHPUnit_Framework_AssertionFailedError $e, $time)
     {
         $message = sprintf("%s  FAILURE: %s (Duration: %s sec)", str_repeat('  ', $this->level), str_replace("\n", " ", $e->getMessage()), $this->getDuration());
         if ($this->colors) {
@@ -97,12 +93,12 @@ class PHPUnit_VerboseResultPrinter extends ResultPrinter
     /**
     * Incomplete test.
     *
-    * @param PHPUnit\Framework\Test $test
+    * @param PHPUnit_Framework_Test $test
     * @param Exception $e
     * @param float $time
     * @return void
     */
-    public function addIncompleteTest(PHPUnit\Framework\Test $test, Exception $e, $time)
+    public function addIncompleteTest(PHPUnit_Framework_Test $test, Exception $e, $time)
     {
         $message = sprintf("%s  INCOMPLETE: %s (Duration: %s sec)", str_repeat('  ', $this->level), str_replace("\n", " ", $e->getMessage()), $this->getDuration());
         if ($this->colors) {
@@ -116,12 +112,12 @@ class PHPUnit_VerboseResultPrinter extends ResultPrinter
     /**
     * Skipped test.
     *
-    * @param PHPUnit\Framework\Test $test
+    * @param PHPUnit_Framework_Test $test
     * @param Exception $e
     * @param float $time
     * @return void
     */
-    public function addSkippedTest(PHPUnit\Framework\Test $test, Exception $e, $time)
+    public function addSkippedTest(PHPUnit_Framework_Test $test, Exception $e, $time)
     {
         // $this->startTest($test);
         $message = sprintf("%s  SKIPPED: %s (Duration: %s sec)", str_repeat('  ', $this->level), str_replace("\n", " ", $e->getMessage()), $this->getDuration());
@@ -137,24 +133,24 @@ class PHPUnit_VerboseResultPrinter extends ResultPrinter
     /**
     * A testsuite started.
     *
-    * @param PHPUnit\Framework\TestSuite $suite
+    * @param PHPUnit_Framework_TestSuite $suite
     * @return void
     */
-    public function startTestSuite(PHPUnit\Framework\TestSuite $suite)
+    public function startTestSuite(PHPUnit_Framework_TestSuite $suite)
     {
         $this->level++;
         $this->starttimes[$this->level] = microtime(true);
-        $this->write(sprintf("%s> SUITE: %s\n", str_repeat('  ', $this->level), PHPUnit\Util\Test::describe($suite)));
+        $this->write(sprintf("%s> SUITE: %s\n", str_repeat('  ', $this->level), PHPUnit_Util_Test::describe($suite)));
         return parent::startTestSuite($suite);
     }
 
     /**
     * A testsuite ended.
     *
-    * @param  PHPUnit\Framework\TestSuite $suite
+    * @param  PHPUnit_Framework_TestSuite $suite
     * @return void
     */
-    public function endTestSuite(PHPUnit\Framework\TestSuite $suite)
+    public function endTestSuite(PHPUnit_Framework_TestSuite $suite)
     {
         $this->write(sprintf("%s< Duration: %s sec\n", str_repeat('  ', $this->level), $this->getDuration()));
         $this->level--;
@@ -164,24 +160,24 @@ class PHPUnit_VerboseResultPrinter extends ResultPrinter
     /**
     * A test started.
     *
-    * @param PHPUnit\Framework\Test $test
+    * @param PHPUnit_Framework_Test $test
     * @return void
     */
-    public function startTest(PHPUnit\Framework\Test $test)
+    public function startTest(PHPUnit_Framework_Test $test)
     {
         $this->level++;
         $this->starttimes[$this->level] = microtime(true);
-        $this->write(sprintf("%s> TEST: %s\n", str_repeat('  ', $this->level), PHPUnit\Util\Test::describe($test)));
+        $this->write(sprintf("%s> TEST: %s\n", str_repeat('  ', $this->level), PHPUnit_Util_Test::describe($test)));
     }
 
     /**
     * A test ended.
     *
-    * @param PHPUnit\Framework\Test $test
+    * @param PHPUnit_Framework_Test $test
     * @param float $time
     * @return void
     */
-    public function endTest(PHPUnit\Framework\Test $test, $time)
+    public function endTest(PHPUnit_Framework_Test $test, $time)
     {
         if (method_exists($test, 'getMessages')) {
             foreach ($test->getMessages() as $testMessage) {
