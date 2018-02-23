@@ -2,14 +2,14 @@ $setup = <<SCRIPT
   sed -i 's/http.us.debian/ftp.de.debian/g' /etc/apt/sources.list
   sed -i 's/http.us.archive/ftp.de.archive/g' /etc/apt/sources.list
   sed -i 's/us.archive.ubuntu.com/de.archive.ubuntu.com/g' /etc/apt/sources.list
-  apt-get -o Acquire::Check-Valid-Until=false update --fix-missing >/dev/null
   echo 'Europe/Berlin' | sudo tee /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata >/dev/null
+  apt-get update -y -qq
 SCRIPT
 
 $mageteststand = <<SCRIPT
   export SKIP_CLEANUP=true
   export WORKSPACE="/vagrant"
-  export MAGENTO_VERSION="magento-ce-1.9.2.2"
+  export MAGENTO_VERSION="magento-ce-1.9.3.4"
   export MAGENTO_DB_HOST="127.0.0.1"
   export MAGENTO_DB_PORT="3306"
   export MAGENTO_DB_USER="root"
@@ -20,35 +20,18 @@ $mageteststand = <<SCRIPT
   curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
 SCRIPT
 
-$provision = false
+$provision = true
 
 Vagrant.configure('2') do |config|
-  # vagrant-omnibus
-  if Vagrant.has_plugin?('vagrant-omnibus')
-    config.omnibus.chef_version = :latest
-    config.omnibus.cache_packages = true
-  end
-
   # vagrant-berkshelf
   config.berkshelf.berksfile_path = 'Berksfile' if Vagrant.has_plugin?('vagrant-berkshelf')
   config.berkshelf.enabled = true if Vagrant.has_plugin?('vagrant-berkshelf')
-
-  # vagrant-cachier
-  if Vagrant.has_plugin?('vagrant-cachier')
-    config.cache.scope = :machine
-    config.cache.synced_folder_opts = {
-      type: :nfs,
-      mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
-    }
-  end
 
   # network
   config.vm.network 'private_network', ip: '10.0.0.50'
 
   # basebox
-  config.vm.box = 'ffuenf/debian-7.9.0-amd64'
-  # config.vm.box = 'mageteststand'
-  # config.vm.box_url = '../mageteststand.box'
+  config.vm.box = 'ffuenf/debian-9.2.1-amd64'
 
   # virtualbox options
   config.vm.provider 'virtualbox' do |v|
@@ -57,6 +40,7 @@ Vagrant.configure('2') do |config|
     v.customize ['modifyvm', :id, '--cpus', 2]
     v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
     v.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
+    v.customize ['guestproperty', 'set', :id, '--timesync-set-threshold', 10000]
   end
 
   # setup
@@ -64,10 +48,14 @@ Vagrant.configure('2') do |config|
 
   # chef
   if $provision then
-    config.vm.provision 'chef_solo' do |chef|
-      chef.provisioning_path = '/tmp/vagrant-chef-solo'
-      chef.file_cache_path = chef.provisioning_path
+    config.vm.provision 'chef_zero' do |chef|
+      chef.version = '12.21.26'
+      chef.provisioning_path = '/tmp/vagrant-chef'
+      chef.file_cache_path = '/var/chef/cache'
       chef.cookbooks_path = ['.']
+      chef.roles_path = '.'
+      chef.nodes_path = '.'
+      chef.environments_path = '.'
       chef.add_recipe 'mageteststand'
       chef.json = {
         "php" => {
@@ -78,10 +66,10 @@ Vagrant.configure('2') do |config|
           }
         },
         "dotdeb" => {
-          "php_version" => "5.6"
+          "php_version" => "7.0"
         },
         "mysql" => {
-          "version" => "5.6",
+          "version" => "5.7",
           "bind_address" => "127.0.0.1",
           "port" => "3306",
           "server_root_password" => "mageteststand"

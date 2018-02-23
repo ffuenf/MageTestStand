@@ -1,7 +1,9 @@
 {
+  "name": "MageTestStand",
+  "description": "This tool is used to build a minimal Magento environment that allows to run PHPUnit tests for a Magento module on Travis CI",
   "minimum-stability": "dev",
   "require": {
-    "ecomdev/ecomdev_phpunit": "dev-dev",
+    "phpseclib/mcrypt_compat": "*",
     "aoepeople/composer-installers": "*"
   },
   "config": {
