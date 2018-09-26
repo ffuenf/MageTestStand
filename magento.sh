@@ -62,9 +62,17 @@ then
         $HOME/.cache/bin/magedownload configure --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN}
         $HOME/.cache/bin/magedownload download magento-${VERSION}.zip $HOME/.cache/magento/magento-${MAGENTO_VERSION}.zip
     fi
+    if [ "$VER" -ge "1920" ] && [ "$VER" -lt "1930" ]
+    then
+        $HOME/.cache/bin/magedownload download PATCH-1.9.2.0-1.9.2.4_PHP7.2_v2.patch $HOME/.cache/magento/PATCH-72.patch
+    fi
+    if [ "$VER" -eq "1930" ]
+    then
+        $HOME/.cache/bin/magedownload download PATCH-1.9.3.0_PHP7.2_v2.patch $HOME/.cache/magento/PATCH-72.patch
+    fi
     if [ ! -f $HOME/.cache/magento/PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch ] && [ "$VER" -ge "1931" ]
     then
-        $HOME/.cache/bin/magedownload download PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch $HOME/.cache/magento/PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch
+        $HOME/.cache/bin/magedownload download PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch $HOME/.cache/magento/PATCH-72.patch
     fi
     cp $HOME/.cache/magento/magento-${MAGENTO_VERSION}.zip /tmp/magento-${MAGENTO_VERSION}.zip
 
@@ -76,12 +84,12 @@ then
       --installationFolder="${SOURCE_DIR}/htdocs" \
       --baseUrl="http://magento.local/" || { echo "Installing Magento failed"; exit 1; }
 
-    if [ "$VER" -ge "1931" ]
+    if [ "$VER" -ge "1920" ]
     then
-        cp $HOME/.cache/magento/PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch ${SOURCE_DIR}/htdocs/PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch
+        cp $HOME/.cache/magento/PATCH-72.patch ${SOURCE_DIR}/htdocs/PATCH-72.patch
         cd ${SOURCE_DIR}/htdocs/
-        patch -p1 < PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch
-        rm -f ${SOURCE_DIR}/htdocs/PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch
+        patch -p1 < PATCH-72.patch
+        rm -f ${SOURCE_DIR}/htdocs/PATCH-72.patch
         cd ${SOURCE_DIR}
     fi
 fi

@@ -2,6 +2,14 @@
 
 This file is used to list changes made in each version of MageTestStand.
 
+## 2.2.3
+- add Magento CE 1.9.3.6
+- add Magento CE 1.9.3.7
+- add Magento CE 1.9.3.8
+- add Magento CE 1.9.3.9
+- add Magento CE 1.9.3.10
+- add official PHP 7.2 patches
+
 ## 2.2.2
 - add Magento CE 1.9.3.4
 
