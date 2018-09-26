@@ -52,7 +52,7 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
 
     VERSION=`echo ${MAGENTO_VERSION} | sed -n 's/.*-\(.*\)/\1/p'`
     VER=`echo "${VERSION//./}"`
-    if [ ! -f $HOME/.cache/magento/magento-ce-${VERSION}.zip ] ; then
+    if [ ! -f $HOME/.cache/magento/magento-ce-${VERSION}.zip ]; then
         $HOME/.cache/bin/magedownload configure --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN}
         $HOME/.cache/bin/magedownload download magento-${VERSION}.zip $HOME/.cache/magento/magento-${MAGENTO_VERSION}.zip
     fi
