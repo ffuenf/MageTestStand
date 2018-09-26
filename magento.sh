@@ -69,7 +69,7 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
       --installationFolder="${SOURCE_DIR}/htdocs" \
       --baseUrl="http://magento.local/" || { echo "Installing Magento failed"; exit 1; }
 
-    if [ $VER >= 1931 ] ; then
+    if [ $VER >= 1931 ]; then
         cp $HOME/.cache/magento/PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch ${SOURCE_DIR}/htdocs/PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch
         cd ${SOURCE_DIR}/htdocs/
         patch -p1 < PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch
