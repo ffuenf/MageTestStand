@@ -52,39 +52,32 @@ Example .travis.yaml file (in the Magento module you want to test):
 ```yml
 language: php
 sudo: false
+cache:
+  apt: true
+  directories:
+  - "$HOME/.composer/cache"
+  - "$HOME/.cache/bin"
+  - "$HOME/.n98-magerun/modules"
+  - "$HOME/.cache/magento"
 php:
-- 5.3
-- 5.4
-- 5.5
-- 5.6
 - 7.0
 - 7.1
 - 7.2
 matrix:
   fast_finish: true
   allow_failures:
-  - env: MAGENTO_VERSION=magento-ce-1.9.1.1
-  - php: 5.3
-  - php: 5.6
-    env: MAGENTO_VERSION=magento-mirror-1.8.1.0
-  - php: 7.0
-    env: MAGENTO_VERSION=magento-mirror-1.8.1.0
+  - php: 7.2
 env:
   global:
   - APPNAME=NAMESPACE_EXTENSIONNAME
   matrix:
-  - MAGENTO_VERSION=magento-ce-1.9.2.2
-  - MAGENTO_VERSION=magento-ce-1.9.1.1
-  - MAGENTO_VERSION=magento-mirror-1.8.1.0
-  - MAGENTO_VERSION=magento-mirror-1.7.0.2
-  - MAGENTO_VERSION=magento-mirror-1.6.2.0
-before_script:
-- composer self-update
-- composer install --prefer-source
+  - MAGENTO_VERSION=ce-1.9.3.10
+before_install:
+- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/before_install.sh
+  | bash
 script:
-- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
-before_deploy:
-- gem install mime-types -v 2.6.2
+- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/script.sh
+  | bash
 deploy:
   provider: releases
   file:
