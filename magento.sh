@@ -54,7 +54,10 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
     VER=`echo "${VERSION//./}"`
     if [ ! -f $HOME/.cache/magento/magento-ce-${VERSION}.zip ] ; then
         $HOME/.cache/bin/magedownload configure --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN}
-        $HOME/.cache/bin/magedownload download magento-${VERSION}.zip  $HOME/.cache/magento/magento-${MAGENTO_VERSION}.zip
+        $HOME/.cache/bin/magedownload download magento-${VERSION}.zip $HOME/.cache/magento/magento-${MAGENTO_VERSION}.zip
+        if [ $VER >= 1931 ] ; then
+            $HOME/.cache/bin/magedownload download PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch $HOME/.cache/magento/PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch
+        fi
     fi
     cp $HOME/.cache/magento/magento-${MAGENTO_VERSION}.zip /tmp/magento-${MAGENTO_VERSION}.zip
 
@@ -65,6 +68,14 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
       --magentoVersionByName="${MAGENTO_VERSION}" \
       --installationFolder="${SOURCE_DIR}/htdocs" \
       --baseUrl="http://magento.local/" || { echo "Installing Magento failed"; exit 1; }
+
+    if [ $VER >= 1931 ] ; then
+        cp $HOME/.cache/magento/PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch ${SOURCE_DIR}/htdocs/PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch
+        cd ${SOURCE_DIR}/htdocs/
+        patch -p1 < PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch
+        rm -f ${SOURCE_DIR}/htdocs/PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch
+        cd ${SOURCE_DIR}
+    fi
 fi
 
 git clone https://github.com/EcomDev/EcomDev_PHPUnit -b dev .modman/EcomDev_PHPUnit
