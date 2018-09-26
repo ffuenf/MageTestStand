@@ -58,6 +58,8 @@ php:
 - 5.5
 - 5.6
 - 7.0
+- 7.1
+- 7.2
 matrix:
   fast_finish: true
   allow_failures:
@@ -123,7 +125,7 @@ License and Author
 
 - Author:: Fabrizio Branca (<mail@fabrizio-branca.de>)
 - Author:: Achim Rosenhagen (<a.rosenhagen@ffuenf.de>)
-- Copyright:: 2016, ffuenf
+- Copyright:: 2018, ffuenf
 
 GNU GENERAL PUBLIC LICENSE Version 3
 
