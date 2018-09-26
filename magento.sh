@@ -55,7 +55,7 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
     if [ ! -f $HOME/.cache/magento/magento-ce-${VERSION}.zip ] ; then
         $HOME/.cache/bin/magedownload configure --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN}
         $HOME/.cache/bin/magedownload download magento-${VERSION}.zip $HOME/.cache/magento/magento-${MAGENTO_VERSION}.zip
-        if [ $VER >= 1931 ] ; then
+        if [ "$VER" -ge 1931 ] ; then
             $HOME/.cache/bin/magedownload download PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch $HOME/.cache/magento/PATCH-1.9.3.1-1.9.3.9_PHP7.2_v2.patch
         fi
     fi

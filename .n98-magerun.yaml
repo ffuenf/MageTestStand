@@ -1,4 +1,17 @@
 commands:
+  N98\Magento\Command\System\CheckCommand:
+      php:
+        required-extensions:
+          - simplexml
+          - hash
+          - gd
+          - dom
+          - iconv
+          - curl
+          - soap
+          - pdo
+          - pdo_mysql
+
   N98\Magento\Command\Installer\InstallCommand:
     magento-packages:
       - name: ce-1.9.3.10
