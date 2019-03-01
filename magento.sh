@@ -94,7 +94,7 @@ then
     fi
 fi
 
-git clone https://github.com/ffuenf/EcomDev_PHPUnit .modman/EcomDev_PHPUnit
+git clone https://github.com/ffuenf/EcomDev_PHPUnit -b dev .modman/EcomDev_PHPUnit
 if [ ! -f composer.lock ]
 then
     composer install --no-interaction --prefer-dist
