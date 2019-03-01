@@ -118,7 +118,7 @@ License and Author
 
 - Author:: Fabrizio Branca (<mail@fabrizio-branca.de>)
 - Author:: Achim Rosenhagen (<a.rosenhagen@ffuenf.de>)
-- Copyright:: 2018, ffuenf
+- Copyright:: 2019, ffuenf
 
 GNU GENERAL PUBLIC LICENSE Version 3
 

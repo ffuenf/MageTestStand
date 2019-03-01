@@ -14,6 +14,13 @@ commands:
 
   N98\Magento\Command\Installer\InstallCommand:
     magento-packages:
+      - name: ce-1.9.4.0
+        version: 1.9.4.0
+        dist:
+          url: /tmp/magento-ce-1.9.4.0.zip
+          type: zip
+          shasum: 9af3aa1ca57c66d75e94abde4880fea7e2bb474a
+
       - name: ce-1.9.3.10
         version: 1.9.3.10
         dist:
