@@ -56,13 +56,13 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     * An error occurred.
     *
     * @param PHPUnit_Framework_Test $test
-    * @param Exception $e
+    * @param \Throwable $t
     * @param float $time
     * @return void
     */
-    public function addError(PHPUnit_Framework_Test $test, Exception $e, $time)
+    public function addError(PHPUnit_Framework_Test $test, \Throwable $t, $time)
     {
-        $message = sprintf("%s  ERROR: %s (Duration: %s sec)", str_repeat('  ', $this->level), str_replace("\n", " ", $e->getMessage()), $this->getDuration());
+        $message = sprintf("%s  ERROR: %s (Duration: %s sec)", str_repeat('  ', $this->level), str_replace("\n", " ", $t->getMessage()), $this->getDuration());
         if ($this->colors) {
             $this->write("\x1b[31;1m$message\x1b[0m" . "\n");
         } else {
