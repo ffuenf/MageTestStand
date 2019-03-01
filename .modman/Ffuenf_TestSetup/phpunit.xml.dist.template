@@ -8,7 +8,7 @@
          beStrictAboutResourceUsageDuringSmallTests="true"
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutTodoAnnotatedTests="true"
-         verbose="true"
+         verbose="true">
    <listeners>
        <listener file="app/code/community/EcomDev/PHPUnit/Test/Listener.php" class="EcomDev_PHPUnit_Test_Listener" />
    </listeners>

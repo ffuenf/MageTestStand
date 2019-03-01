@@ -63,15 +63,20 @@ php:
 - 7.0
 - 7.1
 - 7.2
+- 7.3
 matrix:
   fast_finish: true
   allow_failures:
+  - php: 7.3
   - php: 7.2
 env:
   global:
   - APPNAME=NAMESPACE_EXTENSIONNAME
   matrix:
+  - MAGENTO_VERSION=ce-1.9.4.0
   - MAGENTO_VERSION=ce-1.9.3.10
+  - MAGENTO_VERSION=ce-1.9.2.4
+  - MAGENTO_VERSION=ce-1.9.1.1
 before_install:
 - curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/before_install.sh
   | bash
