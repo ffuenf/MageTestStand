@@ -30,8 +30,22 @@ if [ "$CASHER_DIR" ]; then
     fi
     # phpunit
     if [ ! -f $HOME/.cache/bin/phpunit ]; then
-        curl --connect-timeout 30 -sS https://phar.phpunit.de/phpunit-5.7.9.phar \
-             -o $HOME/.cache/bin/phpunit
+        if [[ "$TRAVIS_PHP_VERSION" = '7.0' ]]; then
+            curl --connect-timeout 30 -sS https://phar.phpunit.de/phpunit-6.5.14.phar \
+                 -o $HOME/.cache/bin/phpunit
+        elif [[ "$TRAVIS_PHP_VERSION" = '7.1' ]]; then
+            curl --connect-timeout 30 -sS https://phar.phpunit.de/phpunit-7.5.6.phar \
+                 -o $HOME/.cache/bin/phpunit
+        elif [[ "$TRAVIS_PHP_VERSION" = '7.2' ]]; then
+            curl --connect-timeout 30 -sS https://phar.phpunit.de/phpunit-7.5.6.phar \
+                 -o $HOME/.cache/bin/phpunit
+        elif [[ "$TRAVIS_PHP_VERSION" = '7.3' ]]; then
+            curl --connect-timeout 30 -sS https://phar.phpunit.de/phpunit-7.5.6.phar \
+                 -o $HOME/.cache/bin/phpunit
+        else
+            curl --connect-timeout 30 -sS https://phar.phpunit.de/phpunit-8.0.4.phar \
+                 -o $HOME/.cache/bin/phpunit
+        fi
         chmod +x $HOME/.cache/bin/phpunit
     fi
     # phpcs
