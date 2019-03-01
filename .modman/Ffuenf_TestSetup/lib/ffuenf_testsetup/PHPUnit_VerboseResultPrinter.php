@@ -60,7 +60,7 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     * @param float $time
     * @return void
     */
-    public function addError(PHPUnit\Framework\Test $test, \Throwable $t, float $time)
+    public function addError(PHPUnit\Framework\Test $test, \Throwable $t, $time)
     {
         $message = sprintf("%s  ERROR: %s (Duration: %s sec)", str_repeat('  ', $this->level), str_replace("\n", " ", $t->getMessage()), $this->getDuration());
         if ($this->colors) {
@@ -79,7 +79,7 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     * @param float $time
     * @return void
     */
-    public function addFailure(PHPUnit\Framework\Test $test, PHPUnit\Framework\AssertionFailedError $e, float $time)
+    public function addFailure(PHPUnit\Framework\Test $test, PHPUnit\Framework\AssertionFailedError $e, $time)
     {
         $message = sprintf("%s  FAILURE: %s (Duration: %s sec)", str_repeat('  ', $this->level), str_replace("\n", " ", $e->getMessage()), $this->getDuration());
         if ($this->colors) {
@@ -98,7 +98,7 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     * @param float $time
     * @return void
     */
-    public function addIncompleteTest(PHPUnit\Framework\Test $test, \Throwable $t, float $time)
+    public function addIncompleteTest(PHPUnit\Framework\Test $test, \Throwable $t, $time)
     {
         $message = sprintf("%s  INCOMPLETE: %s (Duration: %s sec)", str_repeat('  ', $this->level), str_replace("\n", " ", $t->getMessage()), $this->getDuration());
         if ($this->colors) {
@@ -117,7 +117,7 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     * @param float $time
     * @return void
     */
-    public function addSkippedTest(PHPUnit\Framework\Test $test, \Throwable $t, float $time)
+    public function addSkippedTest(PHPUnit\Framework\Test $test, \Throwable $t, $time)
     {
         // $this->startTest($test);
         $message = sprintf("%s  SKIPPED: %s (Duration: %s sec)", str_repeat('  ', $this->level), str_replace("\n", " ", $e->getMessage()), $this->getDuration());
@@ -177,7 +177,7 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     * @param float $time
     * @return void
     */
-    public function endTest(PHPUnit\Framework\Test $test, float $time)
+    public function endTest(PHPUnit\Framework\Test $test, $time)
     {
         if (method_exists($test, 'getMessages')) {
             foreach ($test->getMessages() as $testMessage) {
