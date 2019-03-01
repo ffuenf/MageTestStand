@@ -55,7 +55,7 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     /**
     * An error occurred.
     *
-    * @param PHPUnit_Framework_Test $test
+    * @param PHPUnit\Framework\Test $test
     * @param \Throwable $t
     * @param float $time
     * @return void
@@ -74,8 +74,8 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     /**
     * A failure occurred.
     *
-    * @param PHPUnit_Framework_Test $test
-    * @param PHPUnit_Framework_AssertionFailedError $e
+    * @param PHPUnit\Framework\Test $test
+    * @param PHPUnit\Framework\AssertionFailedError $e
     * @param float $time
     * @return void
     */
@@ -93,8 +93,8 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     /**
     * Incomplete test.
     *
-    * @param PHPUnit_Framework_Test $test
-    * @param Exception $e
+    * @param PHPUnit\Framework\Test $test
+    * @param \Throwable $t
     * @param float $time
     * @return void
     */
@@ -112,8 +112,8 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     /**
     * Skipped test.
     *
-    * @param PHPUnit_Framework_Test $test
-    * @param Exception $e
+    * @param PHPUnit\Framework\Test $test
+    * @param \Throwable $t
     * @param float $time
     * @return void
     */
@@ -133,7 +133,7 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     /**
     * A testsuite started.
     *
-    * @param PHPUnit_Framework_TestSuite $suite
+    * @param PHPUnit\Framework\TestSuite $suite
     * @return void
     */
     public function startTestSuite(PHPUnit\Framework\TestSuite $suite)
@@ -147,7 +147,7 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     /**
     * A testsuite ended.
     *
-    * @param  PHPUnit_Framework_TestSuite $suite
+    * @param  PHPUnit\Framework\TestSuite $suite
     * @return void
     */
     public function endTestSuite(PHPUnit\Framework\TestSuite $suite)
@@ -160,7 +160,7 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     /**
     * A test started.
     *
-    * @param PHPUnit_Framework_Test $test
+    * @param PHPUnit\Framework\Test $test
     * @return void
     */
     public function startTest(PHPUnit\Framework\Test $test)
@@ -173,7 +173,7 @@ class PHPUnit_VerboseResultPrinter extends PHPUnit\TextUI\ResultPrinter
     /**
     * A test ended.
     *
-    * @param PHPUnit_Framework_Test $test
+    * @param PHPUnit\Framework\Test $test
     * @param float $time
     * @return void
     */
